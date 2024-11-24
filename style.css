@@ -1,0 +1,117 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Butcherman&family=Doto:wght@100..900&family=Funnel+Display:wght@300..800&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+
+:root{
+    --font-color:#FFFFFF;
+    --timer-bg-color: #34344A;
+    --button-bg-color: #F0F757;
+
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    height:100vh;
+    display: flex;
+    justify-content: center;
+    background-color: #1D1D23;
+    margin:20px;
+    font-family: "roboto",sans-serif;
+    overflow: hidden;
+    color:var(--font-color)
+}
+
+.alarm-container{
+    /* border: 1px solid; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+h2{
+    text-align: center;
+    margin: 0 0 20px;
+}
+.set-alarm{
+    display: flex;
+    width: 750px;
+    height: 135px;
+    justify-content: space-between;
+    padding: 20px;
+    align-items: center;
+    background-color: var(--timer-bg-color);
+    border-radius: 20px;   
+}
+
+.set-alarm{
+    p{
+        font-size: 25px;
+    }
+    input{
+        font-size:48px;
+        width: 80px;
+        position: relative;
+        text-align: center;
+        padding: 0;
+        border-width: 0 0 2px;
+        border-color: var(--font-color);
+        outline: none;
+        background-color: transparent;
+        caret-color: var(--font-color);
+        color: var(--font-color);
+        &::placeholder{
+            color:var(--font-color);
+            text-align: center;
+        }
+    }
+    span{
+        font-size: 48px;
+    }
+    button{
+        font-size: 18px;
+        color:var(--timer-bg-color);
+        background-color: var(--button-bg-color);
+        border: none;
+        outline: none;
+        width: 124px ;
+        height: 50px;
+        border-radius: 25px;
+        font-weight: 600;
+        cursor: pointer;
+        &:active{
+            transform: scale(.95);
+        }
+    }
+}
+
+.current-timer{
+    width:400px;
+    background-color: #39393E;
+    text-align: center;
+    padding:20px 30px;
+    margin : 40px 0;
+    font-size: 24px;
+    font-weight: 600;
+    border-radius: 50px;
+}
+
+#no-timer{
+    font-size: 24px;
+    font-weight: 500;
+    display: none;
+}
+/* .running-alarm{
+    display: none;
+} */
+.running-alarm .active-digits{
+    display: flex;
+    align-items: center;
+    font-size: 48px;
+    div{
+        /* border: 1px solid; */
+        padding: 0 10px ;
+    }
+}
