@@ -21,7 +21,7 @@ body{
     background-color: #1D1D23;
     margin:20px;
     font-family: "roboto",sans-serif;
-    overflow: hidden;
+    /* overflow: hidden; */
     color:var(--font-color)
 }
 
@@ -101,11 +101,13 @@ h2{
 #no-timer{
     font-size: 24px;
     font-weight: 500;
-    display: none;
+    display: block;
 }
-/* .running-alarm{
-    display: none;
-} */
+.running-alarm{
+    margin : 15px 0 0;
+}
+
+
 .running-alarm .active-digits{
     display: flex;
     align-items: center;

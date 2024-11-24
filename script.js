@@ -1,6 +1,7 @@
 
 const alarm = document.getElementById("alarm");
 const timerMsg = document.getElementById("no-timer");
+const showAlarm = document.querySelector(".alarm-display");
 // const activeAlarm = document.getElementById("active-alarm");
 
 alarm.addEventListener("submit",(e)=>(activeTimer(e)));
@@ -14,16 +15,19 @@ function activeTimer(e){
     if(hour==""||minute==""||second==""){
         return 
     }
+    timerMsg.style.display = "none"
     createAlarm(hour,minute,second);
+
     flag = true;
     if(flag){
         timerMsg.style.display="none"
-        // activeAlarm.style.display = "flex";
+       
     }
 }
 
 
 function createAlarm(hour,min,sec){
+    console.log(1)
     let activeAlarm = document.createElement("div");
     activeAlarm.classList.add("set-alarm","running-alarm");
     let p =document.createElement("p");
@@ -39,7 +43,7 @@ function createAlarm(hour,min,sec){
     let activeMin =document.createElement("div");
     activeMin.innerText = min;
     let span2 = document.createElement("span");
-    span1.innerText =":";
+    span2.innerText =":";
 
     let activeSec =document.createElement("div");
     activeSec.innerText = sec;
@@ -48,5 +52,8 @@ function createAlarm(hour,min,sec){
 
 
     let deleteTimer = document.createElement("button");
+    deleteTimer.innerText = "Delete";
+    activeAlarm.append(p,activeDigits,deleteTimer);
+    showAlarm.append(activeAlarm)
 }
 // createAlarm();
