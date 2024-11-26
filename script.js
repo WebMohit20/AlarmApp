@@ -14,7 +14,7 @@ function activeTimer(e){
     const hour = document.getElementById("hours").value;
     const minute = document.getElementById("minutes").value;
     const second = document.getElementById("seconds").value;
-    if(second==""){
+    if(second=="" && hour =="" && minute ==""){
         return 
     }
     timerMsg.style.display = "none"
@@ -28,20 +28,13 @@ function activeTimer(e){
     alarmCount++;
 }
 
-function deleteAlarm(e){
-    let runningAlarm=(e.target.parentElement);
-    runningAlarm.remove();
-    alarmCount--;
-    if(alarmCount==0){
-        timerMsg.style.display = "block"
-    }    
-}
 
 
+let activeAlarm=null;
 function createAlarm(hour,min,sec){
     // console.log(1)
     
-    let activeAlarm = document.createElement("div");
+    activeAlarm = document.createElement("div");
     activeAlarm.classList.add("set-alarm","running-alarm");
     let p =document.createElement("p");
     p.innerText ="Time Left :";
@@ -49,19 +42,19 @@ function createAlarm(hour,min,sec){
     activeDigits.classList.add("active-digits");
 
     let activeHr =document.createElement("div");
-    // hour = hour.padStart(2,0);
+    hour = hour.padStart(2,0);
     activeHr.innerText = hour;
     let span1 = document.createElement("span");
     span1.innerText =":";
 
     let activeMin =document.createElement("div");
-    // min=min.padStart(2,0);
+    min=min.padStart(2,0);
     activeMin.innerText = min;
     let span2 = document.createElement("span");
     span2.innerText =":";
 
     let activeSec =document.createElement("div");
-    // sec=sec.padStart(2,0);
+    sec=sec.padStart(2,0);
     activeSec.innerText = sec;
 
     activeDigits.append(activeHr ,span1,activeMin,span2,activeSec);
@@ -70,39 +63,62 @@ function createAlarm(hour,min,sec){
     let deleteTimer = document.createElement("button");
     deleteTimer.innerText = "Delete";
     activeAlarm.append(p,activeDigits,deleteTimer);
-    deleteTimer.addEventListener("click" ,deleteAlarm);
+    deleteTimer.addEventListener("click" ,(e)=>deleteAlarm(e));
     showAlarm.append(activeAlarm);
 
     executeTimer(hour,min,sec,activeSec,activeMin,activeHr);
 }
 
 
-// let count =0
+let time =null;
 function executeTimer(hour,min,sec,activeSec,activeMin,activeHr){
     
-    let time = setInterval(()=>{
+    time = setInterval(()=>{
         
-        
-        if(sec==0 && min!=0){
-
-            min--;
-            sec =59;
-        }
-        else if(min ==0 && hour!=0){
-            hour--;
-            min=59;
-        }
         if(hour == 0 && min ==0 && sec==0){
             return clearSetInterval(time);
         }
+        if(sec==0 ){
+            if(min!=0){
+                min--;
+                sec = 60;
+            }
+            sec=60;
+        }
+        else if(min ==0  && hour!=0  ){
+            // hour--;
+            min=59;
+        }
+        
         sec--
-        sec<=9? activeSec.innerText = "0"+sec: activeSec.innerText = sec;
-        min<=9? activeMin.innerText = "0"+ min: activeMin.innerText = min;
-        hour<=9? activeHr.innerText = "0"+hour: activeHr.innerText =hour;
+        sec =(sec.toString()).padStart(2,"0");
+        activeSec.innerText = sec;
+        min = min.toString().padStart(2,"0");
+        activeMin.innerText = min;
+        hour = hour.toString().padStart(2,"0");
+        activeHr.innerText=hour;
 
     },1000)
-
+    
 }
 function clearSetInterval(time){
     clearInterval(time);
+    // activeAlarm.classList.remove("running-alarm");
+    let child=activeAlarm.childNodes;
+    let [p,timer,btn] = child;
+    p.innerText = "Time is up !"
+    timer.style.display = "none";
+    btn.innerText = "Stop"
+    activeAlarm.classList.add("end");
+
+}
+
+function deleteAlarm(e){
+    clearSetInterval(time)
+    let runningAlarm=(e.target.parentElement);
+    runningAlarm.remove();
+    alarmCount--;
+    if(alarmCount==0){
+        timerMsg.style.display = "block"
+    }    
 }

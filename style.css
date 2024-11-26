@@ -120,3 +120,16 @@ h2{
         padding: 0 10px ;
     }
 }
+.end{
+    background-color: var(--button-bg-color);
+    /* justify-content: ; */
+    button{
+        background-color: var(--timer-bg-color);
+        color:var(--button-bg-color);
+    }
+    p{
+        font-size: 48px;
+        padding-left:200px;
+        color:var(--timer-bg-color);
+    }
+}
