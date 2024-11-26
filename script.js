@@ -101,20 +101,26 @@ function executeTimer(hour,min,sec,activeSec,activeMin,activeHr){
     },1000)
     
 }
-function clearSetInterval(time){
+function clearSetInterval(time,delClick){
     clearInterval(time);
     // activeAlarm.classList.remove("running-alarm");
+    console.log(delClick);
+    
     let child=activeAlarm.childNodes;
     let [p,timer,btn] = child;
     p.innerText = "Time is up !"
     timer.style.display = "none";
     btn.innerText = "Stop"
+    if(!delClick){
+        let audio = new Audio('https://actions.google.com/sounds/v1/alarms/alarm_clock.ogg');
+        audio.play();
+    }
     activeAlarm.classList.add("end");
-
 }
 
 function deleteAlarm(e){
-    clearSetInterval(time)
+    let delClick = true;
+    clearSetInterval(time,delClick)
     let runningAlarm=(e.target.parentElement);
     runningAlarm.remove();
     alarmCount--;

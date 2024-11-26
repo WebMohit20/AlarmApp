@@ -12,11 +12,11 @@
         <form class="set-alarm" id="alarm" autocomplete="off">
             <p>Set Time :</p>
             <div class="digits">
-                <input type="text" id="hours" placeholder="hh" maxlength="2" onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))" value= "10">
+                <input type="text" id="hours" placeholder="hh" maxlength="2" onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))" >
                 <span>:</span>
-                <input type="text" id="minutes" placeholder="mm" maxlength="2" onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))"value= "10">
+                <input type="text" id="minutes" placeholder="mm" maxlength="2" onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))">
                 <span>:</span>
-                <input type="text" id="seconds" placeholder="ss" maxlength="2" onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))"value= "10">
+                <input type="text" id="seconds" placeholder="ss" maxlength="2" onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))">
             </div>
             <button id="set-timer">Set</button>
         </form> 
