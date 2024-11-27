@@ -101,6 +101,7 @@ function executeTimer(hour,min,sec,activeSec,activeMin,activeHr){
     },1000)
     
 }
+let audio = new Audio('https://actions.google.com/sounds/v1/alarms/alarm_clock.ogg');
 function clearSetInterval(time,delClick){
     clearInterval(time);
     // activeAlarm.classList.remove("running-alarm");
@@ -112,7 +113,6 @@ function clearSetInterval(time,delClick){
     timer.style.display = "none";
     btn.innerText = "Stop"
     if(!delClick){
-        let audio = new Audio('https://actions.google.com/sounds/v1/alarms/alarm_clock.ogg');
         audio.play();
     }
     activeAlarm.classList.add("end");
@@ -120,6 +120,7 @@ function clearSetInterval(time,delClick){
 
 function deleteAlarm(e){
     let delClick = true;
+    audio.pause();
     clearSetInterval(time,delClick)
     let runningAlarm=(e.target.parentElement);
     runningAlarm.remove();
